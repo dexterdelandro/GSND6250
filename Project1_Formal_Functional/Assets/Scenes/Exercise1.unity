@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 6046504}
   - component: {fileID: 6046503}
   - component: {fileID: 6046502}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: Balcony (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8118,6 +8118,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8616685848737228371, guid: c5efc39a8aaf6e64ea40e9ad573e9b47,
+        type: 3}
+      propertyPath: GroundLayers.m_Bits
+      value: 16
+      objectReference: {fileID: 0}
     - target: {fileID: 8616685848737228372, guid: c5efc39a8aaf6e64ea40e9ad573e9b47,
         type: 3}
       propertyPath: m_Name
@@ -8128,6 +8133,27 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 178886382}
+    - target: {fileID: 8616685848737228382, guid: c5efc39a8aaf6e64ea40e9ad573e9b47,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: b229d3faaddbbee458f81ac6c2179466,
+        type: 2}
+    - target: {fileID: 8616685848737228382, guid: c5efc39a8aaf6e64ea40e9ad573e9b47,
+        type: 3}
+      propertyPath: m_SkinWidth
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8616685848737228382, guid: c5efc39a8aaf6e64ea40e9ad573e9b47,
+        type: 3}
+      propertyPath: m_SlopeLimit
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 8616685848737228382, guid: c5efc39a8aaf6e64ea40e9ad573e9b47,
+        type: 3}
+      propertyPath: m_StepOffset
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 8997996947095583982, guid: c5efc39a8aaf6e64ea40e9ad573e9b47,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -14529,7 +14555,7 @@ GameObject:
   - component: {fileID: 1306358723}
   - component: {fileID: 1306358722}
   - component: {fileID: 1306358721}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: Balcony (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15262,7 +15288,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1488980318}
-  m_Material: {fileID: 13400000, guid: add98fdbc93253a4fb579faa5a75b79f, type: 2}
+  m_Material: {fileID: 13400000, guid: b229d3faaddbbee458f81ac6c2179466, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -15622,7 +15648,7 @@ GameObject:
   - component: {fileID: 1590133677}
   - component: {fileID: 1590133676}
   - component: {fileID: 1590133675}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20668,7 +20694,7 @@ GameObject:
   - component: {fileID: 1650743898}
   - component: {fileID: 1650743897}
   - component: {fileID: 1650743896}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: Balcony (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20878,7 +20904,7 @@ GameObject:
   - component: {fileID: 1687164018}
   - component: {fileID: 1687164017}
   - component: {fileID: 1687164016}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: Bridge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21730,7 +21756,7 @@ GameObject:
   - component: {fileID: 1969806114}
   - component: {fileID: 1969806113}
   - component: {fileID: 1969806112}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: Balcony
   m_TagString: Untagged
   m_Icon: {fileID: 0}
