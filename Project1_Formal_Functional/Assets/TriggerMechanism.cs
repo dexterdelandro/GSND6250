@@ -43,7 +43,7 @@ public class TriggerMechanism : MonoBehaviour
     private void UpdateProgress()
     {
         
-        progressText.text = "Collection progress:m" + collectedObjects + "/" + totalObjects;
+        progressText.text = "Collection progress: " + collectedObjects + "/" + totalObjects;
         
     }
 }
