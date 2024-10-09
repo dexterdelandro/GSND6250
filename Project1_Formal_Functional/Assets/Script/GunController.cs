@@ -4,29 +4,45 @@ using UnityEngine;
 
 public class GunController : MonoBehaviour
 {
-    public GameObject bulletPrefab;  // ×Óµ¯Ô¤ÖÆÌå
-    public Transform firePoint;      // ·¢Éä×Óµ¯µÄÎ»ÖÃ
-    public float bulletSpeed = 20f;  // ×Óµ¯ËÙ¶È
+    public GameObject bulletPrefab;  // ï¿½Óµï¿½Ô¤ï¿½ï¿½ï¿½ï¿½
+    public Transform firePoint;      // ï¿½ï¿½ï¿½ï¿½ï¿½Óµï¿½ï¿½ï¿½Î»ï¿½ï¿½
+    public float bulletSpeed = 20f;  // ï¿½Óµï¿½ï¿½Ù¶ï¿½
+
+    public Camera camera;
 
     void Update()
     {
-        // ¼ì²âÊó±ê×ó¼ü°´ÏÂ
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         if (Input.GetMouseButtonDown(0))
         {
-            Shoot();  // ·¢Éä×Óµ¯
+            Shoot();  // ï¿½ï¿½ï¿½ï¿½ï¿½Óµï¿½
         }
     }
 
     void Shoot()
     {
-        // ÊµÀý»¯×Óµ¯
+
+        Ray raycast = camera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+
+        RaycastHit hit;
+
+        Vector3 hitVec;
+
+        if(Physics.Raycast(raycast, out hit)){
+            hitVec= hit.point;
+        }else{
+            hitVec = raycast.GetPoint(100);
+        }
+
+
+        // Êµï¿½ï¿½ï¿½ï¿½ï¿½Óµï¿½
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
 
-        // »ñÈ¡×Óµ¯µÄ¸ÕÌå×é¼þ²¢ÈÃÆäÏòÇ°ÔË¶¯
+        // ï¿½ï¿½È¡ï¿½Óµï¿½ï¿½Ä¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç°ï¿½Ë¶ï¿½
         Rigidbody rb = bullet.GetComponent<Rigidbody>();
         if (rb != null)
         {
-            rb.velocity = firePoint.forward * bulletSpeed;  // ×Óµ¯³¯×ÅÇ¹¿ÚÇ°·½·ÉÐÐ
+            rb.velocity = (hitVec - firePoint.position).normalized*bulletSpeed; // ï¿½Óµï¿½ï¿½ï¿½ï¿½ï¿½Ç¹ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         }
     }
 }
