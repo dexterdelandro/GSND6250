@@ -10,6 +10,7 @@ public class FlamethrowerPS : MonoBehaviour
     void Start()
     {
         particleSystem = GetComponentInChildren<ParticleSystem>();
+        GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         particleSystem.Stop();
         isOn = false;
     }
@@ -19,6 +20,13 @@ public class FlamethrowerPS : MonoBehaviour
     {
         if(!isOn) StartCoroutine(EmmitFlame());
 
+    }
+
+    private void OnCollisionEnter(Collision other) {
+        if(other.gameObject.tag == "Enemy"){
+            Destroy(other.gameObject);
+            //take damage
+        }
     }
 
     IEnumerator EmmitFlame(){
