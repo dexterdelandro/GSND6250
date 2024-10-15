@@ -3,48 +3,45 @@ using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
-    public int maxHealth = 100;      // 玩家最大生命值
-    public int currentHealth;        // 当前生命值
-    public Slider healthBar;         // 生命条UI滑块
+    public int maxHealth = 100;        // 最大生命值
+    public int currentHealth;          // 当前生命值
+    public Text healthText;            // 用于显示健康状态的文本
 
     void Start()
     {
-        currentHealth = maxHealth;   // 初始生命值为最大
-        UpdateHealthBar();
+        currentHealth = maxHealth;     // 初始化当前生命值
+        UpdateHealthText();            // 更新健康显示
     }
 
+    // 玩家受到伤害时调用
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
-        if (currentHealth <= 0)
+        if (currentHealth < 0)
         {
             currentHealth = 0;
-            Die();
         }
-        UpdateHealthBar();
+        UpdateHealthText();             // 每次受伤后更新健康显示
+
+        if (currentHealth == 0)
+        {
+            Die();                      // 当生命值为0时触发死亡逻辑
+        }
     }
 
+    // 玩家死亡逻辑
     void Die()
     {
         Debug.Log("Player has died!");
-        // 玩家死亡处理逻辑
-    }
-     void OnCollisionEnter(Collision other)
-    {
-        if (other.gameObject.tag == "Enemy")
-        {
-            Destroy(other.gameObject);
-            TakeDamage(5);
-            Debug.Log("TakeDamage");
-        }
+        // 可以在这里加入游戏结束或重生逻辑
     }
 
-
-    void UpdateHealthBar()
+    // 更新文本显示玩家的健康状态
+    void UpdateHealthText()
     {
-        if (healthBar != null)
+        if (healthText != null)
         {
-            healthBar.value = (float)currentHealth / maxHealth;
+            healthText.text = "Health: " + currentHealth + "/" + maxHealth;
         }
     }
 }

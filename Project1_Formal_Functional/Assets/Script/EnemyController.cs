@@ -4,17 +4,19 @@ using UnityEngine.UI;
 
 public class EnemyController : MonoBehaviour
 {
-    public Transform player;        // 玩家对象
-    public Text killCountText;      // UI文本，显示击杀计数
-    public float chaseRange = 10f;  // 敌人追击范围
-    public float grabRange = 1.5f;  
-    public float moveSpeed = 3.5f;  
-    public int health = 3;          
+    public Transform player;          
+    public Text killCountText;        
+    public float chaseRange = 10f;    
+    public float grabRange = 1.5f;    
+    public float moveSpeed = 3.5f;    
+    public int health = 3;            
+    public int damage = 10;           
+    public float attackCooldown = 1f; 
 
     private NavMeshAgent agent;
     private bool isChasing = false;
+    private float lastAttackTime;     
 
-    
     public static int killCount = 0;
 
     void Start()
@@ -31,23 +33,25 @@ public class EnemyController : MonoBehaviour
 
         float distanceToPlayer = Vector3.Distance(transform.position, player.position);
 
+        
         if (distanceToPlayer <= chaseRange)
         {
             isChasing = true;
-            agent.SetDestination(player.position);
+            agent.SetDestination(player.position); 
         }
         else
         {
             isChasing = false;
         }
 
-        if (isChasing && distanceToPlayer <= grabRange)
+        
+        if (isChasing && distanceToPlayer <= grabRange && Time.time >= lastAttackTime + attackCooldown)
         {
-            GrabPlayer();
+            GrabPlayer();  
         }
     }
 
-    // 敌人受到伤害
+    
     public void TakeDamage(int damage)
     {
         health -= damage;
@@ -59,23 +63,33 @@ public class EnemyController : MonoBehaviour
 
     void Die()
     {
-        killCount++;  // 增加击杀计数
-        UpdateKillCountUI();  // 更新UI显示
-        Destroy(gameObject);  // 销毁敌人
+        killCount++;  
+        UpdateKillCountUI();  
+        Destroy(gameObject);  
     }
 
     void GrabPlayer()
     {
-        Debug.Log("Player has been caught!");
-        agent.isStopped = true;
+        Debug.Log("Enemy attacks the player!");
 
+       
+        PlayerHealth playerHealth = player.GetComponent<PlayerHealth>();
+
+       
+        if (playerHealth != null)
+        {
+            playerHealth.TakeDamage(damage);  
+        }
+
+        
+        lastAttackTime = Time.time;
     }
 
     void UpdateKillCountUI()
     {
         if (killCountText != null)
         {
-            killCountText.text = "Kills: " + killCount;  // 更新击杀计数显示
+            killCountText.text = "Kills: " + killCount;  
         }
     }
 }
