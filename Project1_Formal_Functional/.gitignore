@@ -33,6 +33,11 @@ sysinfo.txt
 .DS_Store
 
 ###
+# Blender files
+###
+*.blender
+
+###
 # OS generated
 ###
 .DS_Store
