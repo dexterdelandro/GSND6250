@@ -6,6 +6,8 @@ TagManager:
   tags:
   - CinemachineTarget
   - Collectible
+  - Enemy
+  - WeaponSwitchZone
   layers:
   - Default
   - TransparentFX
