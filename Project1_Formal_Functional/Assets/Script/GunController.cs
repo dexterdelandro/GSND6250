@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GunController : MonoBehaviour
 {
@@ -12,6 +13,10 @@ public class GunController : MonoBehaviour
     public Camera camera;              // 摄像机
     private int currentGunIndex = 0;   // 当前枪的索引
     private float nextFireTime = 0f;   // 下次可以射击的时间
+
+    public int gunLevel = 0;
+
+    public Slider xpSlider;
 
     void Start()
     {
@@ -64,6 +69,7 @@ public class GunController : MonoBehaviour
     public void SwitchGun()
     {
         currentGunIndex = (currentGunIndex + 1) % guns.Length; // 切换到下一把枪
+        if(currentGunIndex>gunLevel)currentGunIndex = gunLevel;
         fireRate += 0.5f;   // 每次切换增加射速
         bulletSpeed += 5f;  // 每次切换增加子弹速度（威力）
         EquipGun(currentGunIndex); // 切换时更新装备的枪
@@ -83,5 +89,18 @@ public class GunController : MonoBehaviour
         guns[gunIndex].SetActive(true);
 
         Debug.Log("装备了枪械: " + gunIndex);
+    }
+
+    void OnTriggerEnter(Collider other) {
+        if(other.gameObject.tag == "MagicWell"){
+            if(xpSlider.value>=1){
+                Debug.Log("upgrading gun");
+                xpSlider.value = 0;
+                gunLevel++;
+                EquipGun(gunLevel);
+            }else{
+                Debug.Log("NOT ENOUGH XP");
+            }
+        }
     }
 }
