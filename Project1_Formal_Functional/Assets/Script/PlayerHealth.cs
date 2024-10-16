@@ -3,17 +3,23 @@ using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
-    public int maxHealth = 100;        // ×î´óÉúÃüÖµ
-    public int currentHealth;          // µ±Ç°ÉúÃüÖµ
-    public Text healthText;            // ÓÃÓÚÏÔÊ¾½¡¿µ×´Ì¬µÄÎÄ±¾
+    public int maxHealth = 100;        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµ
+    public int currentHealth;          // ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½Öµ
+    public Text healthText;            // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½×´Ì¬ï¿½ï¿½ï¿½Ä±ï¿½
+
+    public float XPValue = 0;
+
+    public float XPMax = 100;
+
+    public Slider xpSlider;
 
     void Start()
     {
-        currentHealth = maxHealth;     // ³õÊ¼»¯µ±Ç°ÉúÃüÖµ
-        UpdateHealthText();            // ¸üĞÂ½¡¿µÏÔÊ¾
+        currentHealth = maxHealth;     // ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½Öµ
+        UpdateHealthText();            // ï¿½ï¿½ï¿½Â½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾
     }
 
-    // Íæ¼ÒÊÜµ½ÉËº¦Ê±µ÷ÓÃ
+    // ï¿½ï¿½ï¿½ï¿½Üµï¿½ï¿½Ëºï¿½Ê±ï¿½ï¿½ï¿½ï¿½
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
@@ -21,27 +27,35 @@ public class PlayerHealth : MonoBehaviour
         {
             currentHealth = 0;
         }
-        UpdateHealthText();             // Ã¿´ÎÊÜÉËºó¸üĞÂ½¡¿µÏÔÊ¾
+        UpdateHealthText();             // Ã¿ï¿½ï¿½ï¿½ï¿½ï¿½Ëºï¿½ï¿½ï¿½Â½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾
 
         if (currentHealth == 0)
         {
-            Die();                      // µ±ÉúÃüÖµÎª0Ê±´¥·¢ËÀÍöÂß¼­
+            Die();                      // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÖµÎª0Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß¼ï¿½
         }
     }
 
-    // Íæ¼ÒËÀÍöÂß¼­
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß¼ï¿½
     void Die()
     {
         Debug.Log("Player has died!");
-        // ¿ÉÒÔÔÚÕâÀï¼ÓÈëÓÎÏ·½áÊø»òÖØÉúÂß¼­
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß¼ï¿½
     }
 
-    // ¸üĞÂÎÄ±¾ÏÔÊ¾Íæ¼ÒµÄ½¡¿µ×´Ì¬
+    // ï¿½ï¿½ï¿½ï¿½ï¿½Ä±ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½ÒµÄ½ï¿½ï¿½ï¿½×´Ì¬
     void UpdateHealthText()
     {
         if (healthText != null)
         {
             healthText.text = "Health: " + currentHealth + "/" + maxHealth;
         }
+    }
+
+    public void AddXP(float value){
+        Debug.Log("GETTING XP");
+        XPValue +=value;
+        Debug.Log(XPValue);
+        xpSlider.value = XPValue/XPMax;
+        Debug.Log(xpSlider.value);
     }
 }

@@ -1,3 +1,4 @@
+
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
@@ -19,6 +20,8 @@ public class EnemyController : MonoBehaviour
 
     public static int killCount = 0;
 
+    public int xpGain = 10;
+
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -31,10 +34,11 @@ public class EnemyController : MonoBehaviour
     {
         if (player == null) return;
 
+
         float distanceToPlayer = Vector3.Distance(transform.position, player.position);
 
         
-        if (distanceToPlayer <= chaseRange)
+        if (Time.time>lastAttackTime+attackCooldown && distanceToPlayer <= chaseRange)
         {
             isChasing = true;
             agent.SetDestination(player.position); 
@@ -65,6 +69,8 @@ public class EnemyController : MonoBehaviour
     {
         killCount++;  
         UpdateKillCountUI();  
+        //increment XP
+        player.GetComponent<PlayerHealth>().AddXP(xpGain);
         Destroy(gameObject);  
     }
 
