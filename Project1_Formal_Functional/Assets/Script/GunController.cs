@@ -14,7 +14,7 @@ public class GunController : MonoBehaviour
     private int currentGunIndex = 0;   // 当前枪的索引
     private float nextFireTime = 0f;   // 下次可以射击的时间
 
-    public int gunLevel = 0;
+    public int gunLevel = 1;
 
     public Slider xpSlider;
 
@@ -68,8 +68,7 @@ public class GunController : MonoBehaviour
     // 切换到下一把枪，并增加射速和威力
     public void SwitchGun()
     {
-        currentGunIndex = (currentGunIndex + 1) % guns.Length; // 切换到下一把枪
-        if(currentGunIndex>gunLevel)currentGunIndex = gunLevel;
+        currentGunIndex = (currentGunIndex + 1) % gunLevel; // 切换到下一把枪
         fireRate += 0.5f;   // 每次切换增加射速
         bulletSpeed += 5f;  // 每次切换增加子弹速度（威力）
         EquipGun(currentGunIndex); // 切换时更新装备的枪
@@ -97,7 +96,7 @@ public class GunController : MonoBehaviour
                 Debug.Log("upgrading gun");
                 xpSlider.value = 0;
                 gunLevel++;
-                EquipGun(gunLevel);
+                EquipGun(gunLevel-1);
             }else{
                 Debug.Log("NOT ENOUGH XP");
             }
