@@ -1,11 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI; 
 
 public class PlayerMovement : MonoBehaviour
 {
+
+    public GameObject gun;
+    public bool facingRight;
+    public Bullet bulletPrefab;
+
+    public Transform firePoint;
+
+    public float bulletSpeed;
+
+    public float fireRate;
+    public float lastFireTime;
+
+    public bool fireContinuously; 
     public float moveSpeed = 5f;
     public Rigidbody2D rb;
     private Vector2 movement;
@@ -18,8 +32,13 @@ public class PlayerMovement : MonoBehaviour
     private GameObject healthBar; 
     public Transform healthBarPosition; 
 
+    public SpriteRenderer spriteRenderer;
+
     void Start()
     {
+
+        spriteRenderer = GetComponent<SpriteRenderer>();
+
         rb = GetComponent<Rigidbody2D>();
         currentHealth = maxHealth; 
 
@@ -41,11 +60,40 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-       
         if (currentHealth <= 0)
         {
             Die();
         }
+
+        //everything below is only what the active player does
+        if(!isPlayer)return;
+
+         Vector2 mousePosition = (Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition);
+         gun.transform.up = (Vector3)(mousePosition - new Vector2(transform.position.x, transform.position.y));
+        // Debug.Log(transform.up);
+        // if(transform.up.x<0){
+        //     if(facingRight==true){
+        //         facingRight=false;
+        //         spriteRenderer.flipX = true;
+        //         spriteRenderer.flipY = true;
+        //     }
+        // }else{
+        //     if(facingRight==false){
+        //         facingRight = true;
+        //         spriteRenderer.flipX = false;
+        //         spriteRenderer.flipY = false;
+        //     }
+        // }
+
+        if(fireContinuously){
+            if((Time.time - lastFireTime)>fireRate){
+                Shoot();
+                lastFireTime = Time.time;
+            }
+            
+        }
+       
+
     }
 
     void FixedUpdate()
@@ -107,6 +155,17 @@ public class PlayerMovement : MonoBehaviour
         
         Debug.Log("Player has died.");
         gameObject.SetActive(false); 
+    }
+
+    void OnFire(InputValue inputValue){
+        fireContinuously = inputValue.isPressed;
+    }
+
+    void Shoot(){
+        Bullet bullet = Instantiate(bulletPrefab, firePoint.position, gun.transform.rotation);
+        Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
+
+        rb.velocity = bulletSpeed * gun.transform.up;
     }
     
 }
