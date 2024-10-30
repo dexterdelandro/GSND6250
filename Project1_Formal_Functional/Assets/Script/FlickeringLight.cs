@@ -21,7 +21,7 @@ public class FlickeringLight : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(IsFlickeringLight)return;
+        if(!IsFlickeringLight)return;
         if(!isFlickering)StartCoroutine(FlickerLight());
     }
 
