@@ -8,7 +8,7 @@ TagManager:
   - Collectible
   - Enemy
   - WeaponSwitchZone
-  - MagicWell
+  - Key
   layers:
   - Default
   - TransparentFX
