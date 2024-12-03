@@ -9,6 +9,12 @@ TagManager:
   - Enemy
   - WeaponSwitchZone
   - Key
+  - Ladder
+  - LedgeLimit
+  - Metal
+  - Stone
+  - Wood
+  - Sand
   layers:
   - Default
   - TransparentFX
@@ -25,11 +31,11 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Character
+  - Climb
+  - Short Climb
+  - Vault
+  - Wall Run
   - 
   - 
   - 
