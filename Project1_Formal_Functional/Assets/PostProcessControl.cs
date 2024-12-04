@@ -12,9 +12,9 @@ public class PostProcessControl : MonoBehaviour
     public Volume postProcessingVolume;
     public Vignette vignette;
 
-    public float intensityV;
+   // public float intensityV;
 
-    public float freezeDuration = 3f;
+   // public float freezeDuration = 3f;
 
     public float changePerSecond = 0.1f;
     public bool inFire = false;
@@ -42,7 +42,6 @@ public class PostProcessControl : MonoBehaviour
 
     private void OnTriggerEnter(Collider other) {
         if(other.gameObject.CompareTag("Fire")){
-            Debug.Log("YAY");
             inFire = true;
         }
         
