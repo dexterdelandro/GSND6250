@@ -15,6 +15,7 @@ TagManager:
   - Stone
   - Wood
   - Sand
+  - Fire
   layers:
   - Default
   - TransparentFX
@@ -22,7 +23,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - PostProcess
   - 
   - 
   - 
