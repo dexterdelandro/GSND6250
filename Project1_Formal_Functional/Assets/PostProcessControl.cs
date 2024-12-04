@@ -30,13 +30,13 @@ public class PostProcessControl : MonoBehaviour
     {
         if(vignette ==null)return;
 
-        if(!inFire && vignette.intensity.value<1){
+        if(!inFire && vignette.intensity.value<=1.0f){
             vignette.intensity.value += changePerSecond * Time.deltaTime;
             if(vignette.intensity.value==1){
-                Debug.Log("DIE");
+                //Debug.Log("DIE");
             }
-        } else if (inFire && vignette.intensity.value>0){
-            vignette.intensity.value -= changePerSecond * Time.deltaTime;
+        } else if (inFire && vignette.intensity.value>=0.0f){
+            vignette.intensity.value -= changePerSecond*3.0f * Time.deltaTime;
         }
     }
 

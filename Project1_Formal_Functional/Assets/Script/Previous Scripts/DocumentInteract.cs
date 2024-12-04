@@ -3,35 +3,36 @@ using UnityEngine.UI;
 
 public class DocumentInteract : MonoBehaviour
 {
-    // UIÃæ°åÓÃÓÚÏÔÊ¾ÎÄµµ
+    // UIï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½Äµï¿½
     public GameObject documentPanel;
-    // È·¶¨Íæ¼ÒÊÇ·ñÔÚ·¶Î§ÄÚ
+    // È·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½Ú·ï¿½Î§ï¿½ï¿½
     private bool isPlayerInRange = false;
-    // ÊÇ·ñÕýÔÚ²é¿´ÎÄµµ
+    // ï¿½Ç·ï¿½ï¿½ï¿½ï¿½Ú²é¿´ï¿½Äµï¿½
     private bool isViewingDocument = false;
+    
 
     void Start()
     {
-        // È·±£ÎÄµµ½çÃæÔÚÆô¶¯Ê±ÊÇ¹Ø±ÕµÄ
+        // È·ï¿½ï¿½ï¿½Äµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½Ç¹Ø±Õµï¿½
         documentPanel.SetActive(false);
     }
 
     void Update()
     {
-        // ½öÔÚÍæ¼Ò½øÈë·¶Î§ÇÒ°´ÏÂE¼üÊ±´ò¿ªÎÄµµ
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò½ï¿½ï¿½ë·¶Î§ï¿½Ò°ï¿½ï¿½ï¿½Eï¿½ï¿½Ê±ï¿½ï¿½ï¿½Äµï¿½
         if (isPlayerInRange && Input.GetKeyDown(KeyCode.E) && !isViewingDocument)
         {
             OpenDocument();
         }
 
-        // ¼ì²éÍæ¼ÒÊÇ·ñ°´ÏÂESC¼üÀ´¹Ø±ÕÎÄµµ
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½ï¿½ESCï¿½ï¿½ï¿½ï¿½ï¿½Ø±ï¿½ï¿½Äµï¿½
         if (isViewingDocument && Input.GetKeyDown(KeyCode.Escape))
         {
             CloseDocument();
         }
     }
 
-    // µ±Íæ¼Ò½øÈë´¥·¢Æ÷Ê±
+    // ï¿½ï¿½ï¿½ï¿½Ò½ï¿½ï¿½ë´¥ï¿½ï¿½ï¿½ï¿½Ê±
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -40,7 +41,7 @@ public class DocumentInteract : MonoBehaviour
         }
     }
 
-    // µ±Íæ¼ÒÀë¿ª´¥·¢Æ÷Ê±
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ë¿ªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -49,21 +50,21 @@ public class DocumentInteract : MonoBehaviour
         }
     }
 
-    // ´ò¿ªÎÄµµ½çÃæ
+    // ï¿½ï¿½ï¿½Äµï¿½ï¿½ï¿½ï¿½ï¿½
     private void OpenDocument()
     {
         documentPanel.SetActive(true);
         isViewingDocument = true;
-        // ÔÝÍ£ÓÎÏ·
+        // ï¿½ï¿½Í£ï¿½ï¿½Ï·
         Time.timeScale = 0f;
     }
 
-    // ¹Ø±ÕÎÄµµ½çÃæ
+    // ï¿½Ø±ï¿½ï¿½Äµï¿½ï¿½ï¿½ï¿½ï¿½
     private void CloseDocument()
     {
         documentPanel.SetActive(false);
         isViewingDocument = false;
-        // »Ö¸´ÓÎÏ·
+        // ï¿½Ö¸ï¿½ï¿½ï¿½Ï·
         Time.timeScale = 1f;
     }
 }

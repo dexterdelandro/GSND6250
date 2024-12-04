@@ -5,7 +5,12 @@ using UnityEngine;
 public class ItemCollection : MonoBehaviour
 {
 
-    public bool keyCollected = false;
+    public List<DocumentInteract> notes;
+    public int numCounted;
+    public bool shown = false;
+    public int TotalNum = 4;
+
+    public GameObject HiddenObject;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,15 +20,16 @@ public class ItemCollection : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(numCounted==4 && !shown){
+            HiddenObject.SetActive(true);
+            shown=true;
+        }
     }
 
     private void OnTriggerEnter(Collider other) {
         if(other.gameObject.tag == "Key"){
-            keyCollected = true;
-
-            //change next week
-            Destroy(other.gameObject);
+            numCounted++;
+            Physics.IgnoreCollision(other, GetComponent<CapsuleCollider>(), true);
         }
     }
 }

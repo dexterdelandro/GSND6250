@@ -34,11 +34,11 @@ public class DoorRaise : MonoBehaviour
     //     }
     // }
 
-    void OnTriggerEnter(Collider other){
-         if(other.gameObject.CompareTag("Player"))
-        {
-            Debug.Log("touching player");
-            if(other.gameObject.GetComponent<ItemCollection>().keyCollected) didActivate = true;
-        }
-    }
+    // void OnTriggerEnter(Collider other){
+    //      if(other.gameObject.CompareTag("Player"))
+    //     {
+    //         Debug.Log("touching player");
+    //         if(other.gameObject.GetComponent<ItemCollection>().keyCollected) didActivate = true;
+    //     }
+    // }
 }
