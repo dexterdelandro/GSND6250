@@ -5,7 +5,7 @@ using UnityEngine;
 public class ItemCollection : MonoBehaviour
 {
 
-    public List<DocumentInteract> notes;
+    public List<Collider> notes;
     public int numCounted;
     public bool shown = false;
     public int TotalNum = 4;
@@ -27,9 +27,13 @@ public class ItemCollection : MonoBehaviour
     }
 
     private void OnTriggerEnter(Collider other) {
-        if(other.gameObject.tag == "Key"){
-            numCounted++;
-            Physics.IgnoreCollision(other, GetComponent<CapsuleCollider>(), true);
+        if(other.gameObject.CompareTag("Key")){
+            if(!notes.Contains(other)){
+                numCounted++;
+                notes.Add(other);
+                Physics.IgnoreCollision(other, GetComponent<CapsuleCollider>(), true);
+            }
+            
         }
     }
 }
