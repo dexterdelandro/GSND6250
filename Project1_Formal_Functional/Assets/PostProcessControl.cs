@@ -16,7 +16,7 @@ public class PostProcessControl : MonoBehaviour
 
    // public float freezeDuration = 3f;
 
-    public float changePerSecond = 0.1f;
+    public float changePerSecond = 0.05f;
     public bool inFire = false;
     // Start is called before the first frame update
     void Start()
@@ -36,7 +36,7 @@ public class PostProcessControl : MonoBehaviour
                 //Debug.Log("DIE");
             }
         } else if (inFire && vignette.intensity.value>=0.0f){
-            vignette.intensity.value -= changePerSecond*3.0f * Time.deltaTime;
+            vignette.intensity.value -= changePerSecond*7.0f * Time.deltaTime;
         }
     }
 
