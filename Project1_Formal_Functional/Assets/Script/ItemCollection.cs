@@ -10,7 +10,7 @@ public class ItemCollection : MonoBehaviour
     public bool shown = false;
     public int TotalNum = 4;
 
-    public GameObject HiddenObject;
+    public GameObject hiddenobject;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,8 +21,8 @@ public class ItemCollection : MonoBehaviour
     void Update()
     {
         if(numCounted==4 && !shown){
-            HiddenObject.SetActive(true);
             shown=true;
+            hiddenobject.SetActive(true);
         }
     }
 
